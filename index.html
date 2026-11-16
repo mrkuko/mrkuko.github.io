@@ -47,8 +47,8 @@
     .card-hover { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
     .card-hover:hover { transform: translateY(-4px); border-color: rgba(245, 184, 46, .35); box-shadow: 0 20px 50px -25px rgba(245, 184, 46, .35); }
     /* Herný výrez pôvodných 1600 × 875 snímok: bez VLC a čiernych okrajov. */
-    .mkr-viewport { position: relative; aspect-ratio: 1468 / 824; overflow: hidden; background: #05080f; }
-    .mkr-screenshot { position: absolute; width: 108.99183%; max-width: none; height: auto; left: -4.49591%; top: -3.39806%; }
+    .mkr-viewport { position: relative; aspect-ratio: 1466 / 824; overflow: hidden; background: #05080f; }
+    .mkr-screenshot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .pixel { image-rendering: pixelated; }
     #fireflies { position: absolute; inset: 0; width: 100%; height: 100%; }
     .caret::after { content: "▍"; margin-left: 2px; color: #f5b82e; animation: blink 1s steps(1) infinite; }
@@ -114,10 +114,11 @@
           <a href="#kontakt" class="glass rounded-full px-6 py-3 font-semibold text-white transition hover:border-moon-400/50">Kontakt</a>
         </div>
 
-        <dl class="reveal mt-16 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3">
-          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Kotlin</dt><dd class="mt-1 text-2xl font-bold text-white">~26k</dd><dd class="text-xs text-slate-400">riadkov v jednom projekte</dd></div>
-          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">C99 render</dt><dd class="mt-1 text-2xl font-bold text-white">0,5 ms</dd><dd class="text-xs text-slate-400">na jeden snímok</dd></div>
-          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Vydané</dt><dd class="mt-1 text-2xl font-bold text-white">KDE Store</dd><dd class="text-xs text-slate-400">aj balíčky .deb, .rpm a pre Arch</dd></div>
+        <dl class="reveal mt-16 grid max-w-5xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Bakalárska práca</dt><dd class="mt-1 text-2xl font-bold text-white">VR + mobil</dd><dd class="text-xs text-slate-400">rehabilitačný systém s cloudom, navrhnutý a napísaný samostatne</dd></div>
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Vydané</dt><dd class="mt-1 text-2xl font-bold text-white">KDE Store</dd><dd class="text-xs text-slate-400">widget v obchode KDE, ďalšie projekty s balíčkami .deb, .rpm a pre Arch</dd></div>
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Najväčší projekt</dt><dd class="mt-1 text-2xl font-bold text-white">~26k riadkov</dd><dd class="text-xs text-slate-400">Kotlin, päť vydaní, vyše 180 testov</dd></div>
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">2022 – 2024</dt><dd class="mt-1 text-2xl font-bold text-white">Autor úloh KSI</dd><dd class="text-xs text-slate-400">päť úloh a opravovanie riešení v seminári FI MU pre stredoškolákov</dd></div>
         </dl>
       </div>
     </section>
@@ -389,7 +390,7 @@
         <div class="reveal glass rounded-2xl p-5">
           <div class="font-mono text-2xl text-moon-400">/api REST</div>
           <h3 class="mt-3 font-semibold text-white">KIRA: rezervačný systém</h3>
-          <p class="mt-2 text-sm">Rezervácie termínov a technológií v mobilnom STEM návese: schvaľovanie žiadostí, biznis pravidlá, audit log, export do CSV. Celé prostredie v Dockeri. Školský projekt.</p>
+          <p class="mt-2 text-sm">Rezervácie termínov a technológií v mobilnom STEM návese: schvaľovanie žiadostí, biznis pravidlá, audit log, export do CSV. Celé prostredie v Dockeri. Vlastné riešenie v súťaži ročníka o systém pre neziskovú organizáciu.</p>
           <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">React</span><span class="tag">Docker</span></div>
         </div>
       </div>
@@ -404,10 +405,10 @@
           <figure id="mkr-gallery" aria-label="Snímky neskoršej verzie MKR" aria-roledescription="karusel">
             <div class="mkr-viewport">
               <div data-mkr-slide role="group" aria-label="1 z 2: City Run s HUD">
-                <img src="assets/mkr-city-run.png" alt="City Run: checkpointy a časomiera v neskoršom rozhraní MKR" width="1600" height="875" class="mkr-screenshot" loading="lazy">
+                <img src="assets/mkr-city-run.png" alt="City Run: checkpointy a časomiera v neskoršom rozhraní MKR" width="1466" height="824" class="mkr-screenshot" loading="lazy">
               </div>
               <div data-mkr-slide role="group" aria-label="2 z 2: Príprava pretekov" hidden>
-                <img src="assets/mkr-prepare-race.png" alt="MKR: úvodná obrazovka pred štartom pretekov" width="1600" height="875" class="mkr-screenshot" loading="lazy">
+                <img src="assets/mkr-prepare-race.png" alt="MKR: úvodná obrazovka pred štartom pretekov" width="1466" height="824" class="mkr-screenshot" loading="lazy">
               </div>
             </div>
             <figcaption class="flex items-center justify-between gap-3 px-5 py-3 text-xs text-slate-400">
@@ -481,6 +482,53 @@
       </div>
     </section>
 
+    <!-- ============ STUDY ============ -->
+    <section id="studium" class="mx-auto max-w-6xl px-4 pt-24 sm:px-6">
+      <div class="reveal mb-12">
+        <p class="font-mono text-sm text-firefly-400">// zo štúdia</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">S čím som pracoval v škole</h2>
+        <p class="mt-3 max-w-2xl text-sm text-slate-400">Zadania navrhli vyučujúci, ja som ich riešil. Je tu len to, čo som pri nich sám napísal alebo nastavil.</p>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Algoritmy a dátové štruktúry</h3>
+            <p class="mt-3 text-sm leading-relaxed">Zoznamy, haldy, vyvažovaný vyhľadávací strom, prechody grafom, silno súvislé komponenty, Dijkstra a Bellman-Ford, Kruskal a Prim, triedenia s meraním. Na skúšku rotácie a vkladanie do červeno-čierneho stromu, B-strom a hašovacia tabuľka. Python, C, C++, R.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">C a C++</h3>
+            <p class="mt-3 text-sm leading-relaxed">Šesť väčších úloh v C: Hammingov kód, pokrové kombinácie, klon nástroja <span class="font-mono text-[.8rem] text-moon-300">du</span>, grafy funkcií do SVG. V C++ aritmetika veľkých čísel, strom JSON hodnôt, simulácia prepínača. Pamäť kontrolovaná Valgrindom.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Java, C# a Python</h3>
+            <p class="mt-3 text-sm leading-relaxed">Šach a dáma v Jave v ôsmich iteráciách s revíziou kódu, desktopová aplikácia na správu skladu z tímového projektu, kde som robil väčšinu implementácie. V C# generiká, výnimky a unifikácia typov. V Pythone tetris, míny a rodokmeň s rekurziou.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Web v TypeScripte</h3>
+            <p class="mt-3 text-sm leading-relaxed">React, Vite a Storybook, REST API v Expresse, Prisma nad PostgreSQL, monorepo, Docker, nginx, GitLab CI a Vitest. Menší podiel na tímovom 3D vizualizéri nábytku v three.js.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Databázy</h3>
+            <p class="mt-3 text-sm leading-relaxed">Semestrálny projekt v Oracle: schéma požičovne áut so 14 tabuľkami, pohľady, funkcia a procedúra s kurzorom, trigger a naplánovaná úloha v PL/SQL.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Systémy a siete</h3>
+            <p class="mt-3 text-sm leading-relaxed">Bash a POSIX programovanie v C, Active Directory na Windows Serveri, OSPF cez FRRouting a NAT v GNS3. V magisterskom štúdiu Ansible, Proxmox, WireGuard a rsyslog.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Návrh a práca v tíme</h3>
+            <p class="mt-3 text-sm leading-relaxed">UML diagramy v PlantUML, návrhová a testovacia dokumentácia, klasifikácia chýb, vývojové diagramy. Aktuálne Scrum v trojčlennom tíme nad CodeIgniter 4 a MariaDB.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Technické písanie</h3>
+            <p class="mt-3 text-sm leading-relaxed">Semestrálny kurz na FI MU vedený technickými redaktormi z Red Hatu: štýl dokumentácie, Markdown, Mallard a práca cez Git. Príručka k vlastnému botovi a úpravy v dokumentácii GNOME.</p>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Grafika, 3D a hardvér</h3>
+            <p class="mt-3 text-sm leading-relaxed">GIMP, Inkscape, modelovanie a animácia v Blenderi, plošinovka v Godote. V tímovej vzdelávacej hre v Unity programovacia časť v C# a časť 3D modelov. Arduino so senzormi, displejom, RFID a servom. MATLAB a R.</p>
+          </div>
+      </div>
+    </section>
+
     <!-- ============ TIMELINE ============ -->
     <section id="cesta" class="mx-auto max-w-4xl px-4 py-24 sm:px-6">
       <div class="reveal mb-12">
@@ -507,14 +555,14 @@
           <p class="font-mono text-xs text-slate-500">2024</p>
           <h3 class="mt-1 font-semibold text-white">GNOME, open-source prispievateľ</h3>
           <p class="text-sm">Úpravy dokumentácie touchpadu v gnome-user-docs (Git, GitLab, Mallard/XML)</p>
-          <p class="mt-1 text-sm">Príspevok vznikol v kurze Technical Writing na FI MU.</p>
+          <p class="mt-1 text-sm">Záverečný projekt kurzu technického písania, ktorý na FI MU vedú redaktori z Red Hatu: sekcie o sekundárnom kliknutí touchpadom a o obnovovacej frekvencii obrazovky.</p>
         </li>
         <li class="reveal relative mb-10 pl-8">
           <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-moon-400"></span>
           <p class="font-mono text-xs text-slate-500">2022 – 2024</p>
           <h3 class="mt-1 font-semibold text-white">Fakulta informatiky MU, Brno</h3>
           <p class="text-sm">Programování a vývoj aplikací, ukončené prestupom na UCM</p>
-          <p class="mt-1 text-sm">Popri štúdiu <span class="text-white">autor úloh v KSI</span>: interaktívne webové programovacie úlohy (Python, JavaScript)</p>
+          <p class="mt-1 text-sm">Popri štúdiu <span class="text-white">autor úloh v KSI</span>: interaktívne webové programovacie úlohy (Python, JavaScript). Päť úloh v dvoch ročníkoch, od binárnej sčítačky po rekurziu a úvod do OpenCV, vrátane kontrolných skriptov. K tomu opravovanie riešení a odpovede riešiteľom.</p>
         </li>
         <li class="reveal relative pl-8">
           <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-slate-500"></span>
