@@ -46,6 +46,9 @@
     .shot { box-shadow: 0 30px 80px -30px rgba(34, 211, 238, .25), 0 0 0 1px rgba(148, 163, 184, .12); }
     .card-hover { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
     .card-hover:hover { transform: translateY(-4px); border-color: rgba(245, 184, 46, .35); box-shadow: 0 20px 50px -25px rgba(245, 184, 46, .35); }
+    /* Herný výrez pôvodných 1600 × 875 snímok: bez VLC a čiernych okrajov. */
+    .mkr-viewport { position: relative; aspect-ratio: 1468 / 824; overflow: hidden; background: #05080f; }
+    .mkr-screenshot { position: absolute; width: 108.99183%; max-width: none; height: auto; left: -4.49591%; top: -3.39806%; }
     .pixel { image-rendering: pixelated; }
     #fireflies { position: absolute; inset: 0; width: 100%; height: 100%; }
     .caret::after { content: "▍"; margin-left: 2px; color: #f5b82e; animation: blink 1s steps(1) infinite; }
@@ -391,6 +394,56 @@
           <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">React</span><span class="tag">Docker</span></div>
         </div>
       </div>
+
+      <!-- MKR: prvý verejne vydaný projekt -->
+      <div class="reveal mt-16 mb-6">
+        <p class="font-mono text-sm text-firefly-400">// prvý verejný release</p>
+        <h2 class="mt-2 text-2xl font-bold text-white sm:text-3xl">MKR: pretekársky systém pre FiveM</h2>
+      </div>
+      <article class="reveal glass grid overflow-hidden rounded-2xl md:grid-cols-2">
+        <div class="min-w-0 border-b border-white/10 md:border-b-0 md:border-r">
+          <figure id="mkr-gallery" aria-label="Snímky neskoršej verzie MKR" aria-roledescription="karusel">
+            <div class="mkr-viewport">
+              <div data-mkr-slide role="group" aria-label="1 z 2: City Run s HUD">
+                <img src="assets/mkr-city-run.png" alt="City Run: checkpointy a časomiera v neskoršom rozhraní MKR" width="1600" height="875" class="mkr-screenshot" loading="lazy">
+              </div>
+              <div data-mkr-slide role="group" aria-label="2 z 2: Príprava pretekov" hidden>
+                <img src="assets/mkr-prepare-race.png" alt="MKR: úvodná obrazovka pred štartom pretekov" width="1600" height="875" class="mkr-screenshot" loading="lazy">
+              </div>
+            </div>
+            <figcaption class="flex items-center justify-between gap-3 px-5 py-3 text-xs text-slate-400">
+              <span>Neskoršia verzia · herné rozhranie</span>
+              <div class="flex items-center gap-1" aria-label="Ovládanie snímok">
+                <button type="button" data-mkr-prev class="rounded px-2 py-1 hover:text-white focus-visible:outline" aria-label="Predchádzajúca snímka">←</button>
+                <span data-mkr-count class="tabular-nums">1 / 2</span>
+                <button type="button" data-mkr-next class="rounded px-2 py-1 hover:text-white focus-visible:outline" aria-label="Nasledujúca snímka">→</button>
+                <button type="button" data-mkr-pause class="ml-1 rounded px-2 py-1 hover:text-white focus-visible:outline" aria-label="Pozastaviť automatické prepínanie">Ⅱ</button>
+              </div>
+            </figcaption>
+          </figure>
+          <figure class="mx-5 mb-5 mt-2">
+            <div class="aspect-video overflow-hidden rounded-lg">
+              <iframe class="h-full w-full border-0" width="560" height="315" src="https://www.youtube.com/embed/AcNpNVRDKxA" title="MKR: archívna ukážka skorej verzie bez HUD" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <figcaption class="mt-2 text-xs leading-relaxed text-slate-400">Archívne video · jedna z prvých verzií, ešte bez HUD.</figcaption>
+          </figure>
+        </div>
+        <div class="flex flex-col p-6 sm:p-8">
+          <div class="flex items-center gap-3"><span class="tag warm">Verejne vydaný projekt</span><span class="text-sm text-slate-500">2021</span></div>
+          <h3 class="mt-3 text-xl font-bold text-white sm:text-2xl"><a href="https://github.com/mrkuko/mkr2.0" target="_blank" rel="noopener" class="group">Zdrojový kód na GitHube <span class="text-slate-500 group-hover:text-firefly-400" aria-hidden="true">↗</span></a></h3>
+          <p class="mt-3 text-sm leading-relaxed">Navrhol a implementoval som pretekársky systém pre FiveM, multiplayerovú platformu pre GTA V. Spravuje priebeh pretekov od štartovného a pridelenia vozidla cez kontrolu checkpointov a časového limitu až po vyhodnotenie výsledkov a rebríček.</p>
+          <ul class="mt-4 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Pôvodná implementácia v Lua s ukladaním výsledkov do MySQL; druhá verzia prepísaná do C#.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Konfigurácia tratí cez <span class="font-mono text-[.8rem] text-moon-300">config.json</span> bez úprav kódu: checkpointy, vozidlo, štartovné, odmena a časový limit.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Herné rozhranie v HTML/CSS a JavaScripte prepojené s C# cez správy: odpočítavanie, časomiera a rebríček top 10.</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-1.5"><span class="tag">C#</span><span class="tag">Lua</span><span class="tag">JavaScript</span><span class="tag">HTML / CSS</span><span class="tag">JSON</span></div>
+          <div class="mt-7 border-t border-white/10 pt-5 text-sm leading-relaxed text-slate-400">
+            <p>Po verejnom vydaní si MKR našiel používateľov aj medzi prevádzkovateľmi FiveM serverov a niektorí ho nasadili na svojich serveroch. Bola to moja prvá skúsenosť s vývojom a vydaním projektu, ktorý používali aj ľudia mimo môjho vlastného prostredia.</p>
+            <p class="mt-3">Priložené video dokumentuje jednu z prvých verzií a slúži ako ukážka základného fungovania. Nezachytáva neskorší stav projektu ani doplnené herné rozhranie (HUD), ktoré je viditeľné na snímkach.</p>
+          </div>
+        </div>
+      </article>
     </section>
 
     <!-- ============ SKILLS ============ -->
@@ -514,6 +567,39 @@
     window.addEventListener('scroll', navBg, { passive: true }); navBg();
 
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // --- MKR: dve snímky, automatické prepínanie každých 5 sekúnd ---
+    (function () {
+      var gallery = document.getElementById('mkr-gallery');
+      var slides = gallery.querySelectorAll('[data-mkr-slide]');
+      var count = gallery.querySelector('[data-mkr-count]');
+      var pause = gallery.querySelector('[data-mkr-pause]');
+      var current = 0, paused = reduce, timer;
+      function show(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach(function (slide, i) { slide.hidden = i !== current; });
+        count.textContent = (current + 1) + ' / ' + slides.length;
+      }
+      function schedule() {
+        clearInterval(timer);
+        if (!paused && !document.hidden && !gallery.matches(':hover') && !gallery.contains(document.activeElement)) {
+          timer = setInterval(function () { show(current + 1); }, 5000);
+        }
+      }
+      function updatePause() {
+        pause.textContent = paused ? '▷' : 'Ⅱ';
+        pause.setAttribute('aria-label', paused ? 'Spustiť automatické prepínanie' : 'Pozastaviť automatické prepínanie');
+      }
+      gallery.querySelector('[data-mkr-prev]').addEventListener('click', function () { show(current - 1); schedule(); });
+      gallery.querySelector('[data-mkr-next]').addEventListener('click', function () { show(current + 1); schedule(); });
+      pause.addEventListener('click', function () { paused = !paused; updatePause(); schedule(); });
+      gallery.addEventListener('mouseenter', schedule);
+      gallery.addEventListener('mouseleave', schedule);
+      gallery.addEventListener('focusin', schedule);
+      gallery.addEventListener('focusout', function () { setTimeout(schedule, 0); });
+      document.addEventListener('visibilitychange', schedule);
+      updatePause(); schedule();
+    })();
 
     // --- reveal pri scrollovaní ---
     var io = new IntersectionObserver(function (entries) {
