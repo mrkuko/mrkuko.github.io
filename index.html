@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="sk" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emanuel Cisár, softvérový vývojár</title>
+  <meta name="description" content="Portfólio Emanuela Cisára: backend, systémové programovanie, Linux a open-source projekty.">
+  <meta property="og:title" content="Emanuel Cisár, softvérový vývojár">
+  <meta property="og:description" content="Backend, systémové programovanie, Linux a open-source projekty.">
+  <meta property="og:image" content="assets/minecartographer.jpg">
+  <meta name="theme-color" content="#070b14">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+          },
+          colors: {
+            night: { 950: '#05080f', 900: '#070b14', 800: '#0d1424', 700: '#141d33', 600: '#1e2a47' },
+            firefly: { 300: '#fde68a', 400: '#fcd34d', 500: '#f5b82e' },
+            moon: { 300: '#a5f3fc', 400: '#67e8f9', 500: '#22d3ee' },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    body { background: #070b14; }
+    .glass { background: rgba(13, 20, 36, .62); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(148, 163, 184, .12); }
+    .grad-text { background: linear-gradient(100deg, #fde68a 0%, #f5b82e 35%, #67e8f9 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .tag { font-family: "JetBrains Mono", monospace; font-size: .72rem; padding: .2rem .55rem; border-radius: 999px; border: 1px solid rgba(103, 232, 249, .25); color: #a5f3fc; background: rgba(34, 211, 238, .06); white-space: nowrap; }
+    .tag.warm { border-color: rgba(245, 184, 46, .3); color: #fde68a; background: rgba(245, 184, 46, .07); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .shot { box-shadow: 0 30px 80px -30px rgba(34, 211, 238, .25), 0 0 0 1px rgba(148, 163, 184, .12); }
+    .card-hover { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+    .card-hover:hover { transform: translateY(-4px); border-color: rgba(245, 184, 46, .35); box-shadow: 0 20px 50px -25px rgba(245, 184, 46, .35); }
+    .pixel { image-rendering: pixelated; }
+    #fireflies { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .caret::after { content: "▍"; margin-left: 2px; color: #f5b82e; animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .caret::after { animation: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+
+<body class="font-sans text-slate-300 antialiased selection:bg-firefly-500/30 selection:text-white">
+
+  <!-- ============ NAV ============ -->
+  <header id="nav" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <a href="#top" class="flex items-center gap-2 font-mono text-sm font-semibold text-white">
+        <img src="assets/nightfall-icon.png" alt="" class="h-7 w-7 rounded-md">
+        <span>emanuel<span class="text-firefly-400">.</span>cisar</span>
+      </a>
+      <div class="hidden items-center gap-7 text-sm md:flex">
+        <a href="#projekty" class="hover:text-white">Projekty</a>
+        <a href="#zrucnosti" class="hover:text-white">Zručnosti</a>
+        <a href="#cesta" class="hover:text-white">Vzdelanie</a>
+        <a href="#kontakt" class="rounded-full bg-firefly-500 px-4 py-1.5 font-semibold text-night-900 hover:bg-firefly-400">Kontakt</a>
+      </div>
+      <button id="menuBtn" class="md:hidden rounded-lg p-2 text-slate-200 hover:bg-white/5" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="hidden border-t border-white/5 bg-night-900/95 px-4 pb-4 md:hidden">
+      <a href="#projekty" class="block py-2">Projekty</a>
+      <a href="#zrucnosti" class="block py-2">Zručnosti</a>
+      <a href="#cesta" class="block py-2">Vzdelanie</a>
+      <a href="#kontakt" class="block py-2 text-firefly-400">Kontakt</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="relative flex min-h-[100svh] items-center overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(34,211,238,.14),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(245,184,46,.10),transparent_50%)]"></div>
+      <canvas id="fireflies" aria-hidden="true"></canvas>
+      <!-- moon -->
+      <div class="pointer-events-none absolute right-[8%] top-[14%] hidden h-28 w-28 rounded-full md:block bg-moon-300/90 blur-[1px] shadow-[0_0_120px_40px_rgba(165,243,252,.18)] sm:h-40 sm:w-40"></div>
+
+      <div class="relative z-10 mx-auto w-full max-w-6xl px-4 pt-24 pb-16 sm:px-6">
+        <p class="reveal font-mono text-sm text-moon-400">~/portfolio $ <span id="typed" class="caret text-slate-200"></span></p>
+        <h1 class="reveal mt-5 text-5xl font-bold leading-[1.05] tracking-tight text-white sm:text-7xl">
+          Emanuel <span class="grad-text">Cisár</span>
+        </h1>
+        <p class="reveal mt-5 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">
+          Softvérový vývojár so zameraním na <span class="text-white">backend</span>, <span class="text-white">systémové programovanie</span> a <span class="text-white">Linux</span>.
+          Svoje projekty dotiahnem až do vydania, vrátane dokumentácie, testov, CI a balíčkov.
+        </p>
+        <p class="reveal mt-3 text-sm text-slate-400">Študujem magisterskú aplikovanú informatiku na UCM v Trnave a hľadám stáž alebo juniorskú pozíciu.</p>
+
+        <div class="reveal mt-9 flex flex-wrap gap-3">
+          <a href="#projekty" class="rounded-full bg-firefly-500 px-6 py-3 font-semibold text-night-900 shadow-[0_0_40px_-8px_rgba(245,184,46,.7)] transition hover:bg-firefly-400">Pozrieť projekty</a>
+          <a href="https://github.com/mrkuko" target="_blank" rel="noopener" class="glass rounded-full px-6 py-3 font-semibold text-white transition hover:border-moon-400/50">GitHub ↗</a>
+          <a href="#kontakt" class="glass rounded-full px-6 py-3 font-semibold text-white transition hover:border-moon-400/50">Kontakt</a>
+        </div>
+
+        <dl class="reveal mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Bakalárka</dt><dd class="mt-1 text-2xl font-bold text-white">A / A</dd><dd class="text-xs text-slate-400">práca aj obhajoba</dd></div>
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Kotlin</dt><dd class="mt-1 text-2xl font-bold text-white">~26k</dd><dd class="text-xs text-slate-400">riadkov v jednom projekte</dd></div>
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">C99 render</dt><dd class="mt-1 text-2xl font-bold text-white">0,5 ms</dd><dd class="text-xs text-slate-400">na jeden snímok</dd></div>
+          <div class="glass rounded-2xl p-4"><dt class="text-xs uppercase tracking-wider text-slate-400">Vydané</dt><dd class="mt-1 text-2xl font-bold text-white">KDE Store</dd><dd class="text-xs text-slate-400">aj balíčky .deb, .rpm a pre Arch</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED PROJECTS ============ -->
+    <section id="projekty" class="relative mx-auto max-w-6xl px-4 py-24 sm:px-6">
+      <div class="reveal mb-14">
+        <p class="font-mono text-sm text-firefly-400">// vybrané projekty</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Na čom pracujem</h2>
+      </div>
+
+      <!-- MetaPohyb -->
+      <article class="reveal grid items-center gap-10 lg:grid-cols-2">
+        <div class="relative">
+          <img src="assets/metapohyb.jpg" alt="Headset Meta Quest pre rehabilitáciu" class="shot aspect-[16/10] w-full rounded-2xl object-cover" loading="lazy">
+          <img src="assets/metapohyb-skeleton.jpg" alt="Snímanie kostry používateľa vo VR" class="shot absolute -bottom-8 -right-3 hidden w-2/5 rounded-xl border border-white/10 sm:block" loading="lazy">
+        </div>
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="tag warm">Bakalárska práca, hodnotenie A</span><span class="text-sm text-slate-500">2025 – 2026</span>
+          </div>
+          <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">MetaPohyb</h3>
+          <p class="mt-3 leading-relaxed">Systém pre riadenú rehabilitáciu vo VR. Fyzioterapeut pripraví plán v mobilnej aplikácii, pacient cvičí v headsete Meta Quest 3 a aplikácia v reálnom čase hodnotí, ako presne zopakoval pohyb. Celý systém som navrhol a implementoval sám.</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Backend:</b> PostgreSQL v Supabase, Row Level Security podľa rolí, triggery pre progres plánov, overenie e-mailu z vlastnej domény.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Vlastný protokol:</b> UDP discovery, párovanie a príkazy cez WebSocket s heartbeatom, prenos súborov cez HTTP so session tokenom.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Pohybové dáta:</b> vlastný binárny formát kostry, dekodér v C# aj v Darte, hodnotenie pohybu z uhlov kĺbov.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Hlasové ovládanie</b> spracované priamo v headsete bez internetu (lokálny model Vosk).</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag">Flutter / Dart</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Unity 6 / C#</span><span class="tag">Meta XR SDK</span><span class="tag">WebSocket</span>
+          </div>
+          <div class="mt-6 flex gap-5 text-sm font-semibold">
+            <a href="https://metapohyb.org" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">metapohyb.org ↗</a>
+            <a href="https://github.com/DeadlineDoggo/metapohyb-web" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">Web na GitHube ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Makrela -->
+      <article class="reveal mt-32 grid items-center gap-10 lg:grid-cols-2">
+        <div class="lg:order-2">
+          <div class="shot overflow-hidden rounded-2xl bg-night-950">
+            <div class="flex items-center gap-1.5 border-b border-white/10 bg-night-800 px-3 py-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-green-400/80"></span>
+              <span class="ml-3 font-mono text-xs text-slate-400">java -jar makrela.jar</span>
+            </div>
+            <pre class="overflow-x-auto p-5 font-mono text-[12.5px] leading-relaxed text-slate-300"><span class="text-slate-500">[04:00:00]</span> <span class="text-firefly-400">EVENT::UPDATING MAKRELA</span>
+<span class="text-slate-500">[04:00:00]</span> Bravo six going dark..
+<span class="text-slate-500">[04:00:01]</span> voice kanály: <span class="text-moon-400">"Undergoing maintenance"</span>
+<span class="text-slate-500">[04:00:01]</span> stiahnutie a build z GitHubu
+<span class="text-slate-500">[04:00:38]</span> Initializing data..
+<span class="text-slate-500">[04:00:38]</span> Initializing MySQL..
+<span class="text-slate-500">[04:00:40]</span> <span class="text-green-400">bot znova online, hudba pokračuje</span></pre>
+          </div>
+          <p class="mt-3 text-xs text-slate-500">Zjednodušený priebeh nočnej aktualizácie (reťazce z logov bota).</p>
+        </div>
+        <div class="lg:order-1">
+          <div class="flex items-center gap-3"><span class="tag warm">Java backend</span><span class="text-sm text-slate-500">2022 – 2023</span></div>
+          <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">Makrela</h3>
+          <p class="mt-3 leading-relaxed">Discord bot bežiaci nepretržite ako služba: prehrávanie hudby do hlasových kanálov, kalendár a pripomienky, webová konzola na správu. Približne 4 600 riadkov Javy a 76 commitov. Predchádzala mu verzia v C# (Discord.Net).</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Aktualizuje sa sám za behu:</b> v nastavený čas upozorní používateľov, stiahne a skompiluje novú verziu z GitHubu, reštartuje sa a obnoví stav.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Streamovanie hudby</b> cez LavaPlayer s frontou skladieb a napojením na Spotify Web API.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Spring Boot</b> s webovou konzolou (Thymeleaf), dáta v MySQL, vlastný systém pluginov a plánovaných udalostí, lokalizácia.</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag">Java</span><span class="tag">JDA</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span><span class="tag">LavaPlayer</span><span class="tag">Spotify API</span><span class="tag">Maven</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- MineCartographer -->
+      <article class="reveal mt-32 grid items-center gap-10 lg:grid-cols-2">
+        <div class="lg:order-1">
+          <img src="assets/minecartographer.jpg" alt="MineCartographer: izometrické zobrazenie sveta" class="shot w-full rounded-2xl" loading="lazy">
+        </div>
+        <div class="lg:order-2">
+          <div class="flex items-center gap-3"><span class="tag warm">Desktop, verzia 0.4</span><span class="text-sm text-slate-500">2026</span></div>
+          <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">MineCartographer</h3>
+          <p class="mt-3 leading-relaxed">Desktopový editor, ktorý spája viacero Minecraft svetov do jedného. Približne 26 000 riadkov Kotlinu.</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Parsovanie binárnych formátov hry v troch generáciách (verzie 1.2 až po súčasnosť) a konverzia blokov medzi verziami.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Izometrický render v troch režimoch, vrstvy ako v grafickom editore, 3D editor modelov.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Nedeštruktívna práca: originály sa iba čítajú, plné undo/redo, projekty v XML.</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag">Kotlin</span><span class="tag">Compose for Desktop</span><span class="tag">Coroutines</span><span class="tag">Gradle</span><span class="tag">JUnit 5</span>
+          </div>
+          <div class="mt-6 text-sm font-semibold"><a href="https://github.com/DeadlineDoggo/MineCartographer" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">GitHub ↗</a></div>
+        </div>
+      </article>
+
+      <!-- NIGHTFALL -->
+      <article class="reveal mt-32 grid items-center gap-10 lg:grid-cols-2">
+        <div class="lg:order-2">
+          <div class="shot overflow-hidden rounded-2xl bg-black">
+            <div class="flex items-center gap-1.5 border-b border-white/10 bg-night-800 px-3 py-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-green-400/80"></span>
+              <span class="ml-3 font-mono text-xs text-slate-400">~ $ nightfall</span>
+            </div>
+            <img src="assets/nightfall.gif" alt="NIGHTFALL: animovaný nočný les v termináli" class="pixel w-full" loading="lazy">
+          </div>
+        </div>
+        <div class="lg:order-1">
+          <div class="flex items-center gap-3"><span class="tag warm">Open source, licencia MIT</span><span class="text-sm text-slate-500">2026</span></div>
+          <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">NIGHTFALL</h3>
+          <p class="mt-3 leading-relaxed">Živý procedurálny nočný les v termináli. Každá scéna je iná a 25 druhov zvierat sa správa podľa vlastných potrieb: hlad, únava, nuda, strach.</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Čisté C99 bez závislostí, vlastný z-buffer na úrovni pixelu, snímok za ~0,5 ms.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Linux, macOS, BSD, Windows; na Windows aj natívny šetrič obrazovky (.scr cez WinAPI/GDI, viac monitorov).</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>GitHub Actions: CI, automatické releasy a balíčky .deb, .rpm a pre Arch.</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag">C99</span><span class="tag">WinAPI / GDI</span><span class="tag">GitHub Actions</span><span class="tag">nfpm</span>
+          </div>
+          <div class="mt-6 text-sm font-semibold"><a href="https://github.com/mrkuko/nightfall" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">GitHub ↗</a></div>
+        </div>
+      </article>
+
+      <!-- SoundRoot -->
+      <article class="reveal mt-32 grid items-center gap-10 lg:grid-cols-2">
+        <div class="lg:order-1">
+          <img src="assets/soundroot.jpg" alt="SoundRoot widget v KDE Plasma" class="shot w-full rounded-2xl" loading="lazy">
+        </div>
+        <div class="lg:order-2">
+          <div class="flex items-center gap-3"><span class="tag warm">Zverejnené v KDE Store</span><span class="text-sm text-slate-500">2026</span></div>
+          <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">SoundRoot</h3>
+          <p class="mt-3 leading-relaxed">Widget pre KDE Plasma 6, ktorý posiela zvuk jednotlivých aplikácií na rôzne výstupy. Konfigurácie („miestnosti") sa prepínajú klávesovou skratkou, prepojenia sa kreslia ťahaním myšou.</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>C++ backend nad PipeWire prepojený s rozhraním v QML.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Dotiahnuté do vydania: balíčky, release notes, licencia, privacy policy, promo web.</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag">C++</span><span class="tag">Qt 6 / QML</span><span class="tag">KDE Frameworks</span><span class="tag">PipeWire</span><span class="tag">CMake</span>
+          </div>
+          <div class="mt-6 flex gap-5 text-sm font-semibold">
+            <a href="https://store.kde.org/p/2357238/" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">KDE Store ↗</a>
+            <a href="https://github.com/DeadlineDoggo/audiorouter" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ MORE PROJECTS ============ -->
+    <section class="mx-auto max-w-6xl px-4 pb-24 sm:px-6">
+      <div class="reveal mb-10">
+        <p class="font-mono text-sm text-firefly-400">// ďalšie open source</p>
+        <h2 class="mt-2 text-2xl font-bold text-white sm:text-3xl">Menšie nástroje</h2>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+        <a href="https://github.com/DeadlineDoggo/ThermalPeek" target="_blank" rel="noopener" class="reveal glass card-hover group overflow-hidden rounded-2xl">
+          <img src="assets/thermalpeek.jpg" alt="ThermalPeek banner" class="aspect-[2/1] w-full object-cover" loading="lazy">
+          <div class="p-5">
+            <h3 class="font-semibold text-white">ThermalPeek <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+            <p class="mt-2 text-sm">Teploty CPU, GPU a diskov priamo v paneli KDE Plasma, šesť režimov zobrazenia, verzia aj pre Windows.</p>
+            <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">QML</span><span class="tag">KSysGuard</span></div>
+          </div>
+        </a>
+
+        <a href="https://github.com/DeadlineDoggo/UsagePeek" target="_blank" rel="noopener" class="reveal glass card-hover group overflow-hidden rounded-2xl">
+          <img src="assets/usagepeek.svg" alt="UsagePeek banner" class="aspect-[2/1] w-full bg-night-800 object-cover" loading="lazy">
+          <div class="p-5">
+            <h3 class="font-semibold text-white">UsagePeek <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+            <p class="mt-2 text-sm">Využitie CPU, pamäte a diskov v paneli, voliteľné zapisovanie preťaženia do systémového journalu.</p>
+            <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">QML</span><span class="tag">journald</span></div>
+          </div>
+        </a>
+
+        <a href="https://github.com/mrkuko/raspberry-pi-4-tft-ili9488" target="_blank" rel="noopener" class="reveal glass card-hover group overflow-hidden rounded-2xl">
+          <img src="assets/rpi-tft.jpg" alt="3,5 palcový TFT displej na Raspberry Pi 4" class="aspect-[2/1] w-full object-cover" loading="lazy">
+          <div class="p-5">
+            <h3 class="font-semibold text-white">Raspberry Pi 4 + TFT displej <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+            <p class="mt-2 text-sm">Ovládač SPI displeja s dotykom v userspace, bez kernel modulu. Terminál, malý desktop aj konzola tty1.</p>
+            <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">Python</span><span class="tag">SPI</span><span class="tag">systemd</span></div>
+          </div>
+        </a>
+
+        <a href="https://github.com/DeadlineDoggo/GPUSwitcher" target="_blank" rel="noopener" class="reveal glass card-hover group rounded-2xl p-5">
+          <div class="font-mono text-2xl text-moon-400">⇄ GPU</div>
+          <h3 class="mt-3 font-semibold text-white">GPUSwitcher <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+          <p class="mt-2 text-sm">Prepínanie grafickej karty na notebookoch s Optimus jedným klikom: Plasma widget aj Qt aplikácia v lište, s polkit oprávneniami.</p>
+          <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">C++17</span><span class="tag">Qt 6</span><span class="tag">polkit</span></div>
+        </a>
+
+        <a href="https://github.com/mrkuko/FileStream-Explorer" target="_blank" rel="noopener" class="reveal glass card-hover group rounded-2xl p-5">
+          <div class="font-mono text-2xl text-moon-400">{ } .NET</div>
+          <h3 class="mt-3 font-semibold text-white">FileStream Explorer <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+          <p class="mt-2 text-sm">Dávkové premenovanie, presúvanie a filtrovanie súborov cez reťazce operácií s náhľadom pred vykonaním.</p>
+          <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">C# / .NET 8</span><span class="tag">WPF</span><span class="tag">MVVM</span></div>
+        </a>
+
+        <a href="https://github.com/mrkuko/Pasteguis" target="_blank" rel="noopener" class="reveal glass card-hover group rounded-2xl p-5">
+          <div class="font-mono text-2xl text-moon-400">⌨ paste</div>
+          <h3 class="mt-3 font-semibold text-white">Pasteguis <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+          <p class="mt-2 text-sm">Vypíše obsah schránky ako stlačenia kláves s ľudským časovaním, tam kde vkladanie nefunguje (VM, vzdialené konzoly).</p>
+          <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">C++17</span><span class="tag">CMake</span><span class="tag">Windows</span><span class="tag">Linux</span><span class="tag">macOS</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section id="zrucnosti" class="border-y border-white/5 bg-night-950/60 py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="reveal mb-12">
+          <p class="font-mono text-sm text-firefly-400">// stack</p>
+          <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Zručnosti</h2>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Jazyky</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag warm">Java</span><span class="tag warm">C#</span><span class="tag warm">C / C++</span><span class="tag warm">Kotlin</span><span class="tag warm">Python</span><span class="tag warm">Dart</span><span class="tag warm">JavaScript</span><span class="tag warm">TypeScript</span></div>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Backend a databázy</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">SQL</span><span class="tag">PL/SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Supabase</span><span class="tag">Spring Boot</span><span class="tag">REST API</span><span class="tag">WebSocket</span></div>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">DevOps a infraštruktúra</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">GitHub Actions</span><span class="tag">Linux</span><span class="tag">systemd</span><span class="tag">SSH</span><span class="tag">Bash</span><span class="tag">PowerShell</span></div>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Aplikácie a UI</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Flutter</span><span class="tag">React</span><span class="tag">HTML / CSS</span><span class="tag">Qt / QML</span><span class="tag">WPF</span><span class="tag">Compose</span></div>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Herné enginy a 3D</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Unity</span><span class="tag">Meta XR SDK</span><span class="tag">Blender</span></div>
+          </div>
+          <div class="reveal glass rounded-2xl p-6">
+            <h3 class="font-semibold text-white">Nástroje</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Git</span><span class="tag">Maven</span><span class="tag">Gradle</span><span class="tag">CMake</span><span class="tag">Vim</span><span class="tag">Copilot</span><span class="tag">Claude</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TIMELINE ============ -->
+    <section id="cesta" class="mx-auto max-w-4xl px-4 py-24 sm:px-6">
+      <div class="reveal mb-12">
+        <p class="font-mono text-sm text-firefly-400">// cesta</p>
+        <h2 class="mt-2 text-3xl font-bold text-white sm:text-4xl">Vzdelanie a skúsenosti</h2>
+      </div>
+      <ol class="relative ml-2 border-l border-white/10">
+        <li class="reveal relative mb-10 pl-8">
+          <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-firefly-500 shadow-[0_0_16px_4px_rgba(245,184,46,.5)]"></span>
+          <p class="font-mono text-xs text-slate-500">2026 – súčasnosť</p>
+          <h3 class="mt-1 font-semibold text-white">Mgr. Aplikovaná informatika</h3>
+          <p class="text-sm">Univerzita sv. Cyrila a Metoda v Trnave, Fakulta prírodných vied</p>
+        </li>
+        <li class="reveal relative mb-10 pl-8">
+          <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-moon-400"></span>
+          <p class="font-mono text-xs text-slate-500">2024 – 2026</p>
+          <h3 class="mt-1 font-semibold text-white">Bc. Aplikovaná informatika, priemer 1,68</h3>
+          <p class="text-sm">UCM v Trnave. Bakalárska práca MetaPohyb, hodnotenie A, obhajoba A.</p>
+        </li>
+        <li class="reveal relative mb-10 pl-8">
+          <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-moon-400"></span>
+          <p class="font-mono text-xs text-slate-500">2024</p>
+          <h3 class="mt-1 font-semibold text-white">GNOME, open-source prispievateľ</h3>
+          <p class="text-sm">Úpravy dokumentácie touchpadu v gnome-user-docs (Git, GitLab, Mallard/XML)</p>
+        </li>
+        <li class="reveal relative mb-10 pl-8">
+          <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-moon-400"></span>
+          <p class="font-mono text-xs text-slate-500">2022 – 2024</p>
+          <h3 class="mt-1 font-semibold text-white">Fakulta informatiky MU, Brno</h3>
+          <p class="text-sm">Programování a vývoj aplikací, ukončené prestupom na UCM</p>
+          <p class="mt-1 text-sm">Popri štúdiu <span class="text-white">autor úloh v KSI</span>: interaktívne webové programovacie úlohy (Python, JavaScript)</p>
+        </li>
+        <li class="reveal relative pl-8">
+          <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-slate-500"></span>
+          <p class="font-mono text-xs text-slate-500">2018 – 2022</p>
+          <h3 class="mt-1 font-semibold text-white">Gymnázium Pierra de Coubertina, Piešťany</h3>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="kontakt" class="relative overflow-hidden px-4 pb-24 sm:px-6">
+      <div class="reveal glass relative mx-auto max-w-4xl overflow-hidden rounded-3xl p-8 text-center sm:p-14">
+        <div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(245,184,46,.12),transparent_65%)]"></div>
+        <img src="assets/owl.gif" alt="" class="pixel mx-auto h-20 w-auto" loading="lazy">
+        <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">Kontakt</h2>
+        <p class="mx-auto mt-4 max-w-xl">Hľadám stáž alebo juniorskú pozíciu v backende. Najrýchlejšie ma zastihnete e-mailom.</p>
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+          <a id="mailBtn" href="#kontakt" class="rounded-full bg-firefly-500 px-6 py-3 font-semibold text-night-900 transition hover:bg-firefly-400">Napísať e-mail</a>
+          <a href="https://github.com/mrkuko" target="_blank" rel="noopener" class="glass rounded-full px-6 py-3 font-semibold text-white hover:border-moon-400/50">github.com/mrkuko ↗</a>
+          <a href="https://github.com/DeadlineDoggo" target="_blank" rel="noopener" class="glass rounded-full px-6 py-3 font-semibold text-white hover:border-moon-400/50">github.com/DeadlineDoggo ↗</a>
+        </div>
+        <p class="mt-6 font-mono text-xs text-slate-500">Slovensko, hovorím po slovensky a po anglicky (B2)</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-8 text-center font-mono text-xs text-slate-500">
+    © <span id="year"></span> Emanuel Cisár
+  </footer>
+
+  <script>
+    // --- e-mail poskladaný až v prehliadači (menej spamu od botov) ---
+    (function () {
+      var u = 'emanuelcisar', d = 'gmail.com', a = document.getElementById('mailBtn');
+      a.href = 'mailto:' + u + '@' + d;
+      a.title = u + '@' + d;
+    })();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- mobilné menu ---
+    var btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
+    btn.addEventListener('click', function () {
+      var open = menu.classList.toggle('hidden') === false;
+      btn.setAttribute('aria-expanded', open);
+    });
+    menu.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', function () { menu.classList.add('hidden'); }); });
+
+    // --- pozadie navigácie po scrollnutí ---
+    var nav = document.getElementById('nav');
+    function navBg() { nav.classList.toggle('glass', window.scrollY > 40); }
+    window.addEventListener('scroll', navBg, { passive: true }); navBg();
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // --- reveal pri scrollovaní ---
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    // --- písací efekt ---
+    (function () {
+      var el = document.getElementById('typed');
+      var lines = ['whoami', 'cat projekty.txt | wc -l', 'make release', 'git log --oneline | wc -l'];
+      if (reduce) { el.textContent = lines[0]; return; }
+      var li = 0, ci = 0, del = false;
+      (function tick() {
+        var s = lines[li];
+        el.textContent = s.slice(0, ci);
+        if (!del && ci < s.length) { ci++; setTimeout(tick, 70); }
+        else if (!del) { del = true; setTimeout(tick, 1600); }
+        else if (ci > 0) { ci--; setTimeout(tick, 30); }
+        else { del = false; li = (li + 1) % lines.length; setTimeout(tick, 300); }
+      })();
+    })();
+
+    // --- svetlušky v úvode ---
+    (function () {
+      var c = document.getElementById('fireflies'), ctx = c.getContext('2d'), flies = [], w, h, dpr;
+      function size() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = c.clientWidth; h = c.clientHeight;
+        c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var n = Math.round(Math.min(70, w * h / 18000));
+        flies = Array.from({ length: n }, function () {
+          return { x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35,
+                   r: Math.random() * 1.8 + .8, p: Math.random() * Math.PI * 2, s: Math.random() * .02 + .008 };
+        });
+      }
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        flies.forEach(function (f) {
+          f.p += f.s; f.x += f.vx + Math.sin(f.p) * .15; f.y += f.vy + Math.cos(f.p * .7) * .15;
+          if (f.x < -10) f.x = w + 10; if (f.x > w + 10) f.x = -10; if (f.y < -10) f.y = h + 10; if (f.y > h + 10) f.y = -10;
+          var a = .25 + .75 * Math.pow((Math.sin(f.p * 2) + 1) / 2, 2);
+          var g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 8);
+          g.addColorStop(0, 'rgba(253,230,138,' + a + ')'); g.addColorStop(.25, 'rgba(245,184,46,' + a * .45 + ')'); g.addColorStop(1, 'rgba(245,184,46,0)');
+          ctx.fillStyle = g; ctx.beginPath(); ctx.arc(f.x, f.y, f.r * 8, 0, Math.PI * 2); ctx.fill();
+        });
+        if (!reduce) requestAnimationFrame(draw);
+      }
+      size(); draw();
+      window.addEventListener('resize', size);
+    })();
+  </script>
+</body>
+</html>
