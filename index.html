@@ -129,9 +129,15 @@
 
       <!-- MetaPohyb -->
       <article class="reveal grid items-center gap-10 lg:grid-cols-2">
-        <div class="relative">
-          <img src="assets/metapohyb.jpg" alt="Headset Meta Quest pre rehabilitáciu" class="shot aspect-[16/10] w-full rounded-2xl object-cover" loading="lazy">
-          <img src="assets/metapohyb-skeleton.jpg" alt="Snímanie kostry používateľa vo VR" class="shot absolute -bottom-8 -right-3 hidden w-2/5 rounded-xl border border-white/10 sm:block" loading="lazy">
+        <div>
+          <img src="assets/metapohyb.jpg" alt="MetaPohyb vo VR: pacient cvičí, kostra sa farbí podľa presnosti pohybu a panel vpravo ukazuje zhodu s referenciou" width="1400" height="619" class="shot w-full rounded-2xl" loading="lazy">
+          <div class="mt-3 grid grid-cols-4 gap-3">
+            <img src="assets/metapohyb-skeleton.jpg" alt="Snímanie kostry používateľa vo VR" class="shot aspect-square w-full rounded-xl object-cover" loading="lazy">
+            <img src="assets/metapohyb-result.jpg" alt="Výsledok segmentu vo VR: zhoda v percentách, hviezdičky a získané mince" class="shot aspect-square w-full rounded-xl object-cover" loading="lazy">
+            <img src="assets/metapohyb-characters.jpg" alt="Výber postavy na otočnom podstavci" class="shot aspect-square w-full rounded-xl object-cover" loading="lazy">
+            <img src="assets/metapohyb-mobile.jpg" alt="Mobilná aplikácia po splnení cvičenia z plánu" class="shot aspect-square w-full rounded-xl object-cover object-top" loading="lazy">
+          </div>
+          <p class="mt-3 text-xs text-slate-500">Zábery z aplikácie: cvičenie s farebnou spätnou väzbou na kostre, snímanie tela, výsledok segmentu, výber postavy a mobilná aplikácia.</p>
         </div>
         <div>
           <div class="flex items-center gap-3">
@@ -144,9 +150,13 @@
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Vlastný protokol:</b> UDP discovery, párovanie a príkazy cez WebSocket s heartbeatom, prenos súborov cez HTTP so session tokenom.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Pohybové dáta:</b> vlastný binárny formát kostry, dekodér v C# aj v Darte, hodnotenie pohybu z uhlov kĺbov.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Hlasové ovládanie</b> spracované priamo v headsete bez internetu (lokálny model Vosk).</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Server priamo v headsete:</b> WebSocket (RFC 6455) aj HTTP súborový server napísané nad <span class="font-mono text-[.8rem] text-moon-300">TcpListener</span>, bez hotovej knižnice. Heartbeat po 5 s, odpojenie po 15 s bez odpovede.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Celé telo:</b> 84 kĺbov z Meta Movement SDK, 40 B na kĺb. Skóre z uhlovej odchýlky každého kĺbu (tolerancia 45°), vyhladené a vážené trvaním segmentov.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Mobilná aplikácia:</b> vetva pre pacienta a pre fyzioterapeuta, grafový editor plánov, denné misie generované z ID používateľa a dátumu, pripomienky, SK/EN.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Overenie:</b> jednotkové testy v Unity aj vo Flutteri, používateľské testovanie na 5 – 10 ľuďoch, návrh konzultovaný s fyzioterapeutom.</span></li>
           </ul>
           <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag">Flutter / Dart</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Unity 6 / C#</span><span class="tag">Meta XR SDK</span><span class="tag">WebSocket</span>
+            <span class="tag">Flutter / Dart</span><span class="tag">Supabase</span><span class="tag">PostgreSQL</span><span class="tag">Unity 6 / C#</span><span class="tag">Meta XR SDK</span><span class="tag">WebSocket</span><span class="tag">UDP</span><span class="tag">Vosk</span><span class="tag">Meta Quest 3</span>
           </div>
           <div class="mt-6 flex gap-5 text-sm font-semibold">
             <a href="https://metapohyb.org" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">metapohyb.org ↗</a>
@@ -181,6 +191,7 @@
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Aktualizuje sa sám za behu:</b> v nastavený čas upozorní používateľov, stiahne a skompiluje novú verziu z GitHubu, reštartuje sa a obnoví stav.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Streamovanie hudby</b> cez LavaPlayer s frontou skladieb a napojením na Spotify Web API.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Spring Boot</b> s webovou konzolou (Thymeleaf), dáta v MySQL, vlastný systém pluginov a plánovaných udalostí, lokalizácia.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Sťahovanie a kompiláciu novej verzie rieši samostatný nástroj v Jave. Neskôr som k botovi skúšal webové rozhranie v Laraveli, v Reacte s Java backendom a vo Vaadin Hilla.</span></li>
           </ul>
           <div class="mt-5 flex flex-wrap gap-2">
             <span class="tag">Java</span><span class="tag">JDA</span><span class="tag">Spring Boot</span><span class="tag">MySQL</span><span class="tag">LavaPlayer</span><span class="tag">Spotify API</span><span class="tag">Maven</span>
@@ -201,9 +212,12 @@
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Parsovanie binárnych formátov hry v troch generáciách (verzie 1.2 až po súčasnosť) a konverzia blokov medzi verziami.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Izometrický render v troch režimoch, vrstvy ako v grafickom editore, 3D editor modelov.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Nedeštruktívna práca: originály sa iba čítajú, plné undo/redo, projekty v XML.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Analýza výberu (ktoré bloky, koľko, ktoré sú z modov), waypointy z modov Xaero's Minimap a JourneyMap, atlas textúr, export modelu ako resource pack.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Export zapíše nový svet aj so zoznamom, odkiaľ ktorý chunk pochádza. Nedotknuté chunky sa kopírujú bajt po bajte.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>86 commitov, 5 alfa vydaní, vyše 180 jednotkových testov, CI a release workflow.</span></li>
           </ul>
           <div class="mt-5 flex flex-wrap gap-2">
-            <span class="tag">Kotlin</span><span class="tag">Compose for Desktop</span><span class="tag">Coroutines</span><span class="tag">Gradle</span><span class="tag">JUnit 5</span>
+            <span class="tag">Kotlin</span><span class="tag">Compose for Desktop</span><span class="tag">Coroutines</span><span class="tag">Gradle</span><span class="tag">JUnit 5</span><span class="tag">GitHub Actions</span><span class="tag">nfpm</span>
           </div>
           <div class="mt-6 text-sm font-semibold"><a href="https://github.com/DeadlineDoggo/MineCartographer" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">GitHub ↗</a></div>
         </div>
@@ -228,6 +242,9 @@
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Čisté C99 bez závislostí, vlastný z-buffer na úrovni pixelu, snímok za ~0,5 ms.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Linux, macOS, BSD, Windows; na Windows aj natívny šetrič obrazovky (.scr cez WinAPI/GDI, viac monitorov).</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>GitHub Actions: CI, automatické releasy a balíčky .deb, .rpm a pre Arch.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Sedem biómov a počasie ako simulácia: hmla a dážď prichádzajú s vetrom ako front a zvieratá na ne reagujú. Každá rastlina je tlmená pružina, ktorú ohne vietor aj prechádzajúce zviera.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Jeden súbor okolo 500 kB so všetkou grafikou vnútri, iba libc a libm. Na obrazovku ide len rozdiel oproti predošlému snímku, jedným volaním <span class="font-mono text-[.8rem] text-moon-300">write()</span>.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Približne 9 600 riadkov C, 4 vydania, manuálová stránka, vlastný textový formát pre tvary a animácie.</span></li>
           </ul>
           <div class="mt-5 flex flex-wrap gap-2">
             <span class="tag">C99</span><span class="tag">WinAPI / GDI</span><span class="tag">GitHub Actions</span><span class="tag">nfpm</span>
@@ -248,6 +265,8 @@
           <ul class="mt-5 space-y-2 text-sm">
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>C++ backend nad PipeWire prepojený s rozhraním v QML.</span></li>
             <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Dotiahnuté do vydania: balíčky, release notes, licencia, privacy policy, promo web.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Jedna aplikácia môže hrať do viacerých výstupov naraz, hlasitosť 0 – 150 % pre každú miestnosť, nastavenie sa po štarte obnoví.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span>Začalo ako projekt v predmete Projektový manažment a pokračovalo až po verejné vydanie (verzia 0.8.1-beta).</span></li>
           </ul>
           <div class="mt-5 flex flex-wrap gap-2">
             <span class="tag">C++</span><span class="tag">Qt 6 / QML</span><span class="tag">KDE Frameworks</span><span class="tag">PipeWire</span><span class="tag">CMake</span>
@@ -255,6 +274,41 @@
           <div class="mt-6 flex gap-5 text-sm font-semibold">
             <a href="https://store.kde.org/p/2357238/" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">KDE Store ↗</a>
             <a href="https://github.com/DeadlineDoggo/audiorouter" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">GitHub ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Chaos Note Viewer -->
+      <article class="reveal mt-32 grid items-center gap-10 lg:grid-cols-2">
+        <div class="lg:order-2">
+          <div class="shot overflow-hidden rounded-2xl bg-night-950">
+            <div class="flex items-center gap-1.5 border-b border-white/10 bg-night-800 px-3 py-2">
+              <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-green-400/80"></span>
+              <span class="ml-3 font-mono text-xs text-slate-400">core/crypto/README.md</span>
+            </div>
+            <pre class="overflow-x-auto p-5 font-mono text-[12.5px] leading-relaxed text-slate-300"><span class="text-slate-500"># formát, ktorý musia čítať všetky klienty</span>
+<span class="text-firefly-400">cipher</span>  ChaCha20-Poly1305 (RFC 8439)
+<span class="text-firefly-400">token</span>   <span class="text-moon-400">"v1."</span> + base64url( nonce[12] ‖ ciphertext ‖ tag[16] )
+<span class="text-firefly-400">aad</span>     id poznámky
+<span class="text-firefly-400">key</span>     32 náhodných bajtov, nikdy v cloude
+
+<span class="text-slate-500"># vectors.json: rovnaké testovacie vektory
+# pre desktop (JavaScript) aj Android (Kotlin)</span>
+<span class="text-slate-500">$</span> node vectors.mjs --check</pre>
+          </div>
+          <p class="mt-3 text-xs text-slate-500">Zjednodušený zápis formátu šifrovaných poznámok zo spoločnej časti repozitára.</p>
+        </div>
+        <div class="lg:order-1">
+          <div class="flex items-center gap-3"><span class="tag warm">Vo vývoji</span><span class="text-sm text-slate-500">2026</span></div>
+          <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">Chaos Note Viewer</h3>
+          <p class="mt-3 leading-relaxed">Poznámky s termínmi, ktoré žijú na zariadení a fungujú bez účtu aj bez siete. Tri klienty: widget pre KDE Plasma 6, aplikácia v lište pre Linux a Windows a aplikácia pre Android. Po prihlásení sa poznámky šifrujú na zariadení a server vidí iba šifrovaný text.</p>
+          <ul class="mt-5 space-y-2 text-sm">
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Šifrovanie na zariadení:</b> kľúč vzniká na prvom zariadení a do cloudu sa neukladá. Formát strážia spoločné testovacie vektory, voči ktorým sa klienty kontrolujú bajt po bajte.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Jedno repo, tri časti:</b> spoločná schéma databázy s migráciami, pravidlá Firestore s testami v emulátore, automatické zlučovanie hlavnej vetvy do vetiev klientov.</span></li>
+            <li class="flex gap-2"><span class="text-firefly-400">▸</span><span><b class="text-white">Android:</b> lokálna databáza Room, synchronizácia na pozadí cez WorkManager, widget na ploche, pripomienky termínov, približne 190 testov.</span></li>
+          </ul>
+          <div class="mt-5 flex flex-wrap gap-2">
+            <span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Room</span><span class="tag">C++17</span><span class="tag">Qt 6 / QML</span><span class="tag">Firebase</span><span class="tag">ChaCha20-Poly1305</span>
           </div>
         </div>
       </article>
@@ -315,6 +369,27 @@
           <p class="mt-2 text-sm">Vypíše obsah schránky ako stlačenia kláves s ľudským časovaním, tam kde vkladanie nefunguje (VM, vzdialené konzoly).</p>
           <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">C++17</span><span class="tag">CMake</span><span class="tag">Windows</span><span class="tag">Linux</span><span class="tag">macOS</span></div>
         </a>
+
+        <a href="https://github.com/mrkuko/PDFExtractor" target="_blank" rel="noopener" class="reveal glass card-hover group rounded-2xl p-5">
+          <div class="font-mono text-2xl text-moon-400">▤ PDF</div>
+          <h3 class="mt-3 font-semibold text-white">PDF Slide Extractor <span class="text-slate-500 group-hover:text-firefly-400">↗</span></h3>
+          <p class="mt-2 text-sm">Uloží každú stranu PDF prezentácie ako obrázok. Strany sa vykresľujú paralelne v procesoch na všetkých jadrách.</p>
+          <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">Python</span><span class="tag">PyMuPDF</span><span class="tag">multiprocessing</span></div>
+        </a>
+
+        <div class="reveal glass rounded-2xl p-5">
+          <div class="font-mono text-2xl text-moon-400">☑ .md</div>
+          <h3 class="mt-3 font-semibold text-white">Markdown Task Manager</h3>
+          <p class="mt-2 text-sm">Vytiahne zaškrtávacie úlohy z Markdown súborov a zmeny zapisuje späť do nich. Zdieľanie medzi zariadeniami cez Wi-Fi a QR kód. Školský projekt.</p>
+          <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Provider</span></div>
+        </div>
+
+        <div class="reveal glass rounded-2xl p-5">
+          <div class="font-mono text-2xl text-moon-400">/api REST</div>
+          <h3 class="mt-3 font-semibold text-white">KIRA: rezervačný systém</h3>
+          <p class="mt-2 text-sm">Rezervácie termínov a technológií v mobilnom STEM návese: schvaľovanie žiadostí, biznis pravidlá, audit log, export do CSV. Celé prostredie v Dockeri. Školský projekt.</p>
+          <div class="mt-4 flex flex-wrap gap-1.5"><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">React</span><span class="tag">Docker</span></div>
+        </div>
       </div>
     </section>
 
@@ -332,23 +407,23 @@
           </div>
           <div class="reveal glass rounded-2xl p-6">
             <h3 class="font-semibold text-white">Backend a databázy</h3>
-            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">SQL</span><span class="tag">PL/SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Supabase</span><span class="tag">Spring Boot</span><span class="tag">REST API</span><span class="tag">WebSocket</span></div>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">SQL</span><span class="tag">PL/SQL</span><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Supabase</span><span class="tag">Spring Boot</span><span class="tag">REST API</span><span class="tag">WebSocket</span><span class="tag">Node.js</span><span class="tag">Prisma</span><span class="tag">Firebase</span><span class="tag">Row Level Security</span><span class="tag">JWT</span></div>
           </div>
           <div class="reveal glass rounded-2xl p-6">
             <h3 class="font-semibold text-white">DevOps a infraštruktúra</h3>
-            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">GitHub Actions</span><span class="tag">Linux</span><span class="tag">systemd</span><span class="tag">SSH</span><span class="tag">Bash</span><span class="tag">PowerShell</span></div>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Docker</span><span class="tag">Ansible</span><span class="tag">GitHub Actions</span><span class="tag">Linux</span><span class="tag">systemd</span><span class="tag">SSH</span><span class="tag">Bash</span><span class="tag">PowerShell</span><span class="tag">Docker Compose</span><span class="tag">nginx</span><span class="tag">nfpm</span><span class="tag">Proxmox</span></div>
           </div>
           <div class="reveal glass rounded-2xl p-6">
             <h3 class="font-semibold text-white">Aplikácie a UI</h3>
-            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Flutter</span><span class="tag">React</span><span class="tag">HTML / CSS</span><span class="tag">Qt / QML</span><span class="tag">WPF</span><span class="tag">Compose</span></div>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Flutter</span><span class="tag">React</span><span class="tag">HTML / CSS</span><span class="tag">Qt / QML</span><span class="tag">WPF</span><span class="tag">Compose</span><span class="tag">Jetpack Compose</span><span class="tag">KDE Plasma 6</span><span class="tag">Android</span></div>
           </div>
           <div class="reveal glass rounded-2xl p-6">
-            <h3 class="font-semibold text-white">Herné enginy a 3D</h3>
-            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Unity</span><span class="tag">Meta XR SDK</span><span class="tag">Blender</span></div>
+            <h3 class="font-semibold text-white">Herné enginy, 3D a hardvér</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Unity</span><span class="tag">Meta XR SDK</span><span class="tag">Blender</span><span class="tag">3D tlač</span><span class="tag">Raspberry Pi</span><span class="tag">PlatformIO</span></div>
           </div>
           <div class="reveal glass rounded-2xl p-6">
-            <h3 class="font-semibold text-white">Nástroje</h3>
-            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Git</span><span class="tag">Maven</span><span class="tag">Gradle</span><span class="tag">CMake</span><span class="tag">Vim</span><span class="tag">Copilot</span><span class="tag">Claude</span></div>
+            <h3 class="font-semibold text-white">Nástroje a testovanie</h3>
+            <div class="mt-4 flex flex-wrap gap-2"><span class="tag">Git</span><span class="tag">Maven</span><span class="tag">Gradle</span><span class="tag">CMake</span><span class="tag">Vim</span><span class="tag">Copilot</span><span class="tag">Claude</span><span class="tag">Make</span><span class="tag">JUnit 5</span><span class="tag">Quarto</span><span class="tag">GIMP</span></div>
           </div>
         </div>
       </div>
@@ -378,6 +453,7 @@
           <p class="font-mono text-xs text-slate-500">2024</p>
           <h3 class="mt-1 font-semibold text-white">GNOME, open-source prispievateľ</h3>
           <p class="text-sm">Úpravy dokumentácie touchpadu v gnome-user-docs (Git, GitLab, Mallard/XML)</p>
+          <p class="mt-1 text-sm">Príspevok vznikol v kurze Technical Writing na FI MU.</p>
         </li>
         <li class="reveal relative mb-10 pl-8">
           <span class="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-moon-400"></span>
