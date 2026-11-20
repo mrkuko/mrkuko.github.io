@@ -285,25 +285,15 @@
       <!-- Chaos Note Viewer -->
       <article class="reveal mt-32 grid items-center gap-10 lg:grid-cols-2">
         <div class="lg:order-2">
-          <div class="shot overflow-hidden rounded-2xl bg-night-950">
-            <div class="flex items-center gap-1.5 border-b border-white/10 bg-night-800 px-3 py-2">
-              <span class="h-2.5 w-2.5 rounded-full bg-red-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-yellow-400/80"></span><span class="h-2.5 w-2.5 rounded-full bg-green-400/80"></span>
-              <span class="ml-3 font-mono text-xs text-slate-400">core/crypto/README.md</span>
-            </div>
-            <pre class="overflow-x-auto p-5 font-mono text-[12.5px] leading-relaxed text-slate-300"><span class="text-slate-500"># formát, ktorý musia čítať všetky klienty</span>
-<span class="text-firefly-400">cipher</span>  ChaCha20-Poly1305 (RFC 8439)
-<span class="text-firefly-400">token</span>   <span class="text-moon-400">"v1."</span> + base64url( nonce[12] ‖ ciphertext ‖ tag[16] )
-<span class="text-firefly-400">aad</span>     id poznámky
-<span class="text-firefly-400">key</span>     32 náhodných bajtov, nikdy v cloude
-
-<span class="text-slate-500"># vectors.json: rovnaké testovacie vektory
-# pre desktop (JavaScript) aj Android (Kotlin)</span>
-<span class="text-slate-500">$</span> node vectors.mjs --check</pre>
+          <img src="assets/chaosnote-banner.jpg" alt="Chaos Note Viewer: poznámky s termínmi na ploche a v telefóne" class="shot w-full rounded-2xl" loading="lazy">
+          <div class="mt-4 grid grid-cols-3 items-end gap-3">
+            <img src="assets/chaosnote-android-list.png" alt="Chaos Note Viewer na Androide: zoznam poznámok" class="shot w-full rounded-xl" loading="lazy">
+            <img src="assets/chaosnote-android-calendar.png" alt="Chaos Note Viewer na Androide: kalendár termínov" class="shot w-full rounded-xl" loading="lazy">
+            <img src="assets/chaosnote-desktop-important.png" alt="Chaos Note Viewer na desktope: dôležité poznámky" class="shot w-full rounded-xl" loading="lazy">
           </div>
-          <p class="mt-3 text-xs text-slate-500">Zjednodušený zápis formátu šifrovaných poznámok zo spoločnej časti repozitára.</p>
         </div>
         <div class="lg:order-1">
-          <div class="flex items-center gap-3"><span class="tag warm">Vo vývoji</span><span class="text-sm text-slate-500">2026</span></div>
+          <div class="flex items-center gap-3"><span class="tag warm">Open source, GPL-3.0</span><span class="text-sm text-slate-500">2026</span></div>
           <h3 class="mt-3 text-2xl font-bold text-white sm:text-3xl">Chaos Note Viewer</h3>
           <p class="mt-3 leading-relaxed">Poznámky s termínmi, ktoré žijú na zariadení a fungujú bez účtu aj bez siete. Tri klienty: widget pre KDE Plasma 6, aplikácia v lište pre Linux a Windows a aplikácia pre Android. Po prihlásení sa poznámky šifrujú na zariadení a server vidí iba šifrovaný text.</p>
           <ul class="mt-5 space-y-2 text-sm">
@@ -314,6 +304,7 @@
           <div class="mt-5 flex flex-wrap gap-2">
             <span class="tag">Kotlin</span><span class="tag">Jetpack Compose</span><span class="tag">Room</span><span class="tag">C++17</span><span class="tag">Qt 6 / QML</span><span class="tag">Firebase</span><span class="tag">ChaCha20-Poly1305</span>
           </div>
+          <div class="mt-6 text-sm font-semibold"><a href="https://github.com/mrkuko/ChaosNoteViewer" target="_blank" rel="noopener" class="text-moon-400 hover:text-moon-300">GitHub ↗</a></div>
         </div>
       </article>
     </section>
